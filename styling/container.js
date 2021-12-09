@@ -16,6 +16,11 @@ const styleContainer = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end'
     },
+    containerWelcome:{
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
     container: {
         display: 'flex',
         flex: 1,
@@ -54,7 +59,27 @@ const styleContainer = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center'
-    }
+    },
+    backgroundVideo: {
+        width: "100%", 
+        height:"100%",
+        backgroundColor:'orange',
+        display: "flex",
+        position: 'absolute',
+        borderWidth:5,
+        borderColor: "yellow", 
+        borderRadius:5
+      },
+      boxOutside:{
+        width: 300, 
+        height:200, 
+        position:'relative',
+        borderWidth:7, 
+        borderColor:"white",
+        borderRadius:5,
+        marginBottom:20,
+        backgroundColor:"yellow"
+      }
 
 })
 export default styleContainer;
