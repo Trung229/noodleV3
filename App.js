@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -23,6 +23,8 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import stylesContainer from './styling/container'
 import Video from 'react-native-video';
+import {db} from './DB_config/firebaseConfig'
+import { getDoc, doc } from 'firebase/firestore/lite';
 
 
 const URL_LOCAL = "./assets/img/bg.png";
@@ -33,8 +35,10 @@ const LOGO = "./assets/img/logo.png"
 const RIGHT_ARROW = "./assets/img/rightArrow.png"
 
 const App = () => {
-  const onSuccess = e => {
-    console.log(e);
+  const onSuccess = async (e) => {
+    const docRef = doc(db, 'users', e.data)
+    const citySnapshot = await getDoc(docRef);
+    console.log(citySnapshot.data())
   };
   const onBuffer = () => {
 
