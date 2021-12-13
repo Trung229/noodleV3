@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
     Text,
     View
 } from 'react-native';
-import { db } from '../../DB_config/firebaseConfig'
-import { getDoc, doc } from 'firebase/firestore/lite';
+import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment';
+import { fetchAPI } from '../../src/services/noodle'
 
 const Info = ({ route: { params: { id } } }) => {
-    const [data, setData] = useState({});
-    const GetData = async (userID) => {
-        const docRef = doc(db, 'users', userID)
-        const citySnapshot = await getDoc(docRef);
-        setData(citySnapshot.data())
-    }
+    const noodle = useSelector((state) => state?.data?.payload)
+    const dispatch = useDispatch();
     useEffect(() => {
-        GetData(id)
-        return () => { setData("") }
+        dispatch({
+            type: 'noodle/saveID',
+            payload: id,
+        })
+        dispatch(fetchAPI)
+        return () => {
+            dispatch({
+                type: 'noodle/saveID',
+                payload: 0,
+            })
+        }
     }, [id])
-    console.log("data : ",data)
-    console.log("==>", data?.birthDay?.seconds)
     return (
         <View>
-            {data && 
-            <View>
-                <Text>{data.fullName}</Text>
-                <Text>{data.gender}</Text>
-                <Text>{moment.unix(data?.birthDay?.seconds).format('DD MMM YYYY')}</Text>
-            </View>
+            {noodle &&
+                <View>
+                    <Text>{noodle.fullName}</Text>
+                    <Text>{noodle.gender}</Text>
+                    <Text>{moment.unix(noodle?.birthDay?.seconds).format('DD MMM YYYY')}</Text>
+                </View>
             }
         </View>
     )
