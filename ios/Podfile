@@ -17,6 +17,8 @@ target 'noodlev3' do
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
   target 'noodlev3Tests' do
     inherit! :complete
     # Pods for testing
