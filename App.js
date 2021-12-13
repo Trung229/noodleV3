@@ -6,30 +6,21 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-  Image
-} from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider } from 'react-redux'
 import Welcome from './components/Welcome';
 import Info from './components/Info';
+import store from './src/app/store'
 
 const Stack = createNativeStackNavigator();
 
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome">
         <Stack.Screen 
             options={{
@@ -45,6 +36,7 @@ const App = () => {
             component={Info} />
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 };
 
