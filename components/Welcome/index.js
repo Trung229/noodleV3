@@ -23,13 +23,9 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import stylesContainer from '../../styling/container'
 import Video from 'react-native-video';
+import {URL_LOCAL, ICON_SCAN, VIDEO, WELCOME, LOGO, RIGHT_ARROW } from '../../src/utils/constant'
 
-const URL_LOCAL = "../../assets/img/bg.png";
-const ICON_SCAN = "../../assets/img/Scan.png"
-const VIDEO = "../../assets/video/video1.mp4"
-const WELCOME = "../../assets/img/welcome.png"
-const LOGO = "../../assets/img/logo.png"
-const RIGHT_ARROW = "../../assets/img/rightArrow.png"
+
 
 const Welcome = ({navigation}) => {
     const onSuccess = async (e) => {
@@ -46,13 +42,13 @@ const Welcome = ({navigation}) => {
       const [isPause, setIsPaused] = useState(false);
     return(
         <View style={stylesContainer.container}>
-        <ImageBackground source={require(URL_LOCAL)} style={stylesContainer.imgBackground}>
+        <ImageBackground source={URL_LOCAL} style={stylesContainer.imgBackground}>
           <View style={stylesContainer.box1}>
             <View style={stylesContainer.containerWelcome}>
-              <Image resizeMode="contain" style={{ width: 100, height: 100 }} source={require(LOGO)} />
-              <Image resizeMode="contain" style={{ width: 300, height: 20 }} source={require(WELCOME)} />
+              <Image resizeMode="contain" style={{ width: 100, height: 100 }} source={LOGO} />
+              <Image resizeMode="contain" style={{ width: 300, height: 20 }} source={WELCOME} />
               <View style={stylesContainer.boxOutside}>
-                <Video source={require(VIDEO)}
+                <Video source={VIDEO}
                   controls
                   paused={isPause}
                   repeat
@@ -69,7 +65,7 @@ const Welcome = ({navigation}) => {
             <View style={stylesContainer.containerLogoScan}>
               <Image
                 style={stylesContainer.tinyLogo}
-                source={require(ICON_SCAN)}
+                source={ICON_SCAN}
               />
               <Text style={stylesContainer.textLogoScan}>Follow the arrow to scan card</Text>
             </View>
@@ -88,7 +84,7 @@ const Welcome = ({navigation}) => {
               containerStyle={{ alignItems: "center" }}
             />
           </View>
-          <Image resizeMode="contain" style={{position: "absolute", width: 50, height: 50, bottom:"10%", right:20}} source={require(RIGHT_ARROW)}/>
+          <Image resizeMode="contain" style={{position: "absolute", width: 50, height: 50, bottom:"10%", right:20}} source={RIGHT_ARROW}/>
         </ImageBackground>
       </View>
     )
