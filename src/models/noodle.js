@@ -5,6 +5,7 @@ export const noodleModel = createSlice({
     initialState: {
       data:{},
       id:0,
+      noodleAvailable:[]
     },
     reducers: {
       saveData: (state, action) => {
@@ -20,6 +21,12 @@ export const noodleModel = createSlice({
               ...state,
               id: action.payload,
           }
+      },
+      saveNoodle: (state, action)=>{
+        return {
+            ...state,
+            noodleAvailable: action.payload,
+        }
       }
     }
   })
