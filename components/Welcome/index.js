@@ -1,23 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useState, useEffect } from 'react';
 import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
     Text,
-    useColorScheme,
     View,
-    TouchableOpacity,
     ImageBackground,
-    Image
+    Image,
+    ActivityIndicator,
+    BackHandler,
 } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
@@ -31,6 +19,8 @@ const Welcome = ({navigation}) => {
     const onSuccess = async (e) => {
         if(e.data){
             navigation.navigate('Info',{id:e.data})
+        }else{
+            navigation.navigate('Error')
         }
       };
       const onBuffer = () => {
@@ -39,7 +29,10 @@ const Welcome = ({navigation}) => {
       const videoError = () => {
     
       }
-      const [isPause, setIsPaused] = useState(false);
+      const [isPause, setIsPaused] = useState(true);
+      useEffect(()=>{
+       return ()=> setIsPaused(true)  
+      },[])
     return(
         <View style={stylesContainer.container}>
         <ImageBackground source={URL_LOCAL} style={stylesContainer.imgBackground}>
@@ -50,7 +43,7 @@ const Welcome = ({navigation}) => {
               <View style={stylesContainer.boxOutside}>
                 <Video source={VIDEO}
                   controls
-                  paused={isPause}
+                  paused={!isPause}
                   repeat
                   hideShutterView={false}
                   resizeMode="stretch"
