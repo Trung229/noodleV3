@@ -63,7 +63,6 @@ const styleContainer = StyleSheet.create({
     backgroundVideo: {
         width: "100%", 
         height:"100%",
-        backgroundColor:'orange',
         display: "flex",
         position: 'absolute',
         borderWidth:5,
@@ -78,7 +77,13 @@ const styleContainer = StyleSheet.create({
         borderColor:"white",
         borderRadius:5,
         marginBottom:20,
-        backgroundColor:"yellow"
+      },
+      activityIndicatorStyle:{
+        position:'absolute', 
+        left:0, 
+        right:0, 
+        top:0, 
+        bottom:0
       }
 
 })
